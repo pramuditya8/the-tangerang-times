@@ -37,40 +37,71 @@ export const Post = ({ data, loading }) => {
                 : ""
             )
           )
-          .map((post) => {
-            return (
-              <div
-                key={post?.id}
-                className="max-w-screen-xl xl:mx-auto border-b-[1px] border-black mx-5"
-              >
-                <Link to={`/details/${post?.id}`}>
-                  <div className="max-w-screen-xl bg-white flex-wrap md:flex-nowrap md:flex md:justify-end my-5 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="block md:hidden mx-auto">
-                      <img className="mb-5" src={post?.imgUrl} alt="" />
+          .map((post, index) => (
+            <div key={post?.id}>
+              {!location?.search ? (
+                <>
+                  {index > 0 && (
+                    <div className="max-w-screen-xl xl:mx-auto border-b-[1px] border-black mx-5">
+                      <Link to={`/details/${post?.id}`}>
+                        <div className="max-w-screen-xl bg-white flex-wrap md:flex-nowrap md:flex md:justify-end my-5 dark:bg-gray-800 dark:border-gray-700">
+                          <div className="block md:hidden mx-auto">
+                            <img className="mb-5" src={post?.imgUrl} alt="" />
+                          </div>
+                          <div className="mr-5">
+                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                              {post?.title}
+                            </h5>
+                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                              {post?.content.length > 250
+                                ? `${post?.content.substring(0, 200)}...`
+                                : post?.content}
+                            </p>
+                            <p className=" italic">
+                              <span>{post?.Category?.name}</span>
+                              <span className="mx-3">|</span>
+                              <span>{post?.Tags[0]?.name}</span>
+                            </p>
+                          </div>
+                          <div className="hidden md:block mx-auto">
+                            <img className="" src={post?.imgUrl} alt="" />
+                          </div>
+                        </div>
+                      </Link>
                     </div>
-                    <div className="mr-5">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {post?.title}
-                      </h5>
-                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {post?.content.length > 250
-                          ? `${post?.content.substring(0, 200)}...`
-                          : post?.content}
-                      </p>
-                      <p className=" italic">
-                        <span>{post?.Category?.name}</span>
-                        <span className="mx-3">|</span>
-                        <span>{post?.Tags[0]?.name}</span>
-                      </p>
+                  )}
+                </>
+              ) : (
+                <div className="max-w-screen-xl xl:mx-auto border-b-[1px] border-black mx-5">
+                  <Link to={`/details/${post?.id}`}>
+                    <div className="max-w-screen-xl bg-white flex-wrap md:flex-nowrap md:flex md:justify-end my-5 dark:bg-gray-800 dark:border-gray-700">
+                      <div className="block md:hidden mx-auto">
+                        <img className="mb-5" src={post?.imgUrl} alt="" />
+                      </div>
+                      <div className="mr-5">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                          {post?.title}
+                        </h5>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          {post?.content.length > 250
+                            ? `${post?.content.substring(0, 200)}...`
+                            : post?.content}
+                        </p>
+                        <p className=" italic">
+                          <span>{post?.Category?.name}</span>
+                          <span className="mx-3">|</span>
+                          <span>{post?.Tags[0]?.name}</span>
+                        </p>
+                      </div>
+                      <div className="hidden md:block mx-auto">
+                        <img className="" src={post?.imgUrl} alt="" />
+                      </div>
                     </div>
-                    <div className="hidden md:block mx-auto">
-                      <img className="" src={post?.imgUrl} alt="" />
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))
       )}
     </>
   );

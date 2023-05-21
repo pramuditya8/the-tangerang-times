@@ -24,7 +24,7 @@ export const Header = ({ data, loading }) => {
             Latest News
           </h1>
           <div className="mx-5 max-w-screen-xl xl:mx-auto border-double border-b-4 border-black pb-5">
-            <Link to={`details/${data[0]?.id}`}>
+            <Link to={`/details/${data[0]?.id}`}>
               <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 mb-5">
                 <div className="bg-slate-100">
                   <img
